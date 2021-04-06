@@ -1,0 +1,24 @@
+image: docker/compose:latest
+
+services:
+  - name: docker:dind
+    alias: localhost
+
+before_script:
+  - docker version
+  - docker-compose version
+  - apk add curl xmlstarlet
+
+hw_test:
+  stage: test
+  script:
+    - docker-compose up --build -d
+    - sleep 10
+    - INDEX_ID=$(curl -s -L http://localhost | xmlstarlet sel --html -t -m "//input[@id='ci-validation']" -v "@value")
+    - echo "$INDEX_ID"
+    - > 
+      if [ "$INDEX_ID" == "00002" ]; then
+        echo "Success!" && exit 0
+      else
+        echo "Fail!" && exit 1
+      fi
