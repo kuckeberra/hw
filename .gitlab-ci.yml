@@ -14,7 +14,7 @@ hw_test:
   script:
     - docker-compose up --build -d
     - sleep 10
-    - INDEX_ID=$(curl -s -L http://localhost | xmlstarlet sel --html -t -m "//input[@id='ci-validation']" -v "@value")
+    - INDEX_ID=$(curl -s -L http://docker | xmlstarlet sel --html -t -m "//input[@id='ci-validation']" -v "@value")
     - echo "$INDEX_ID"
     - > 
       if [ "$INDEX_ID" == "00002" ]; then
