@@ -2,7 +2,7 @@
 
 ## Objective 📋
 
-Nginx container starts with the wrong index page. You need to add proper docker-compose.override.yaml to make it work
+Nginx container starts with the wrong index page. The problem is, that cantainer starts with wrong nginx configuration. You need to add proper docker-compose.override.yaml, with container entrypoint fix to make it work
 
 ## Solution 👌
 
@@ -16,7 +16,7 @@ __IMPORTANT!__ The solution, should be based only on proper docker-compose.overr
 ### To make the things work properly, please follow the manual below:
 
 - Fork the project 
-- Create proper docker-compose.override.yaml
+- Create proper docker-compose.override.yaml (you need to fix the container entrypoint)
 - Commit and push the changes
 - If the pipeline succeeds, you have completed the task
   
